@@ -12,7 +12,7 @@ const Tasklist = ({ tasks, onStatusChange }) => {
   return (
     <div
       id="tasklist"
-      className="flex items-center justify-start gap-5 h-[55%] overflow-x-auto flex-nowrap w-full py-5 mt-10"
+      className="flex  items-center justify-start gap-5 h-[55%] overflow-x-auto flex-nowrap w-full py-5 mt-10"
     >
       {tasks.map((task) => {
         switch (task.status) {
