@@ -1,5 +1,5 @@
 //api.js
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://employee-management-system-ems-backend.onrender.com/api";
 
 export const fetchTasks = async () => {
   const response = await fetch(`${API_URL}/tasks`);
