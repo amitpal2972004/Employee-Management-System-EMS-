@@ -40,11 +40,12 @@ export const getTasksByUser = async (userId) => {
 
 export const getAllTasks = async () => {
    const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:5000/api/tasks`, {
+  const res = await fetch(`${API_URL}/tasks`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return await res.json();
 };
+
 // Get all employees with their tasks (for admin dashboard)
 export const getEmployeesWithTasks = async () => {
   const token = localStorage.getItem("token"); // if using auth
