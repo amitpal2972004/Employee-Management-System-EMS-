@@ -5,6 +5,7 @@ import Admindashboard from "./components/Dashboard/admindashboard";
 import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 import { fetchTasks } from "./api";
+const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -26,7 +27,7 @@ const App = () => {
 
 const handleLogin = async (email, password) => {
   try {
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

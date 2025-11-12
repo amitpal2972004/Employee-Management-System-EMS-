@@ -10,12 +10,14 @@ const Createtask = ({ onTaskCreated }) => {
   const [category, setcategory] = useState("");
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
+  const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 
   // Fetch employee list from backend
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/tasks/employees");
+        const res = await fetch(`${BACKEND_URL}/api/tasks/employees`);
         const data = await res.json();
         console.log("Fetched employees:", data); // Debug log
         setEmployees(data);
