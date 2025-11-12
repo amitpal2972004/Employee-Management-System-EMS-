@@ -4,7 +4,7 @@ import { createTask } from "../../api";
 const Createtask = ({ onTaskCreated }) => {
   const [Tasktitel, setTasktitel] = useState("");
   const [Description, setDescription] = useState("");
-  const [assignTo, setassignTo] = useState([]); // ✅ initialize as array
+  const [assignTo, setassignTo] = useState([]);
 
   const [Taskdate, setDate] = useState("");
   const [category, setcategory] = useState("");
@@ -31,14 +31,14 @@ const Createtask = ({ onTaskCreated }) => {
     e.preventDefault();
     setLoading(true);
 
-   const newTask = {
-  title: Tasktitel,
-  description: Description,
-  category,
-  date: Taskdate,
-  assignedTo: assignTo, 
-  status: "new",
-};
+    const newTask = {
+      title: Tasktitel,
+      description: Description,
+      category,
+      date: Taskdate,
+      assignedTo: assignTo,
+      status: "new",
+    };
 
     try {
       await createTask(newTask);
@@ -94,21 +94,22 @@ const Createtask = ({ onTaskCreated }) => {
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Assign to
             </label>
-       <select
-  value={assignTo} // a single value
-  onChange={(e) => setassignTo(e.target.value)} // just one value
-  className="w-full text-sm py-3 px-4 rounded-lg border-2 border-gray-700 bg-gray-800/50 text-white"
-  required
->
-  <option className="text-black" value="">Select employee</option> {/* optional placeholder */}
-  {employees.map((emp) => (
-    <option className="text-black" key={emp._id} value={emp._id}>
-      {emp.email}
-    </option>
-  ))}
-</select>
-
-
+            <select
+              value={assignTo} // a single value
+              onChange={(e) => setassignTo(e.target.value)} // just one value
+              className="w-full text-sm py-3 px-4 rounded-lg border-2 border-gray-700 bg-gray-800/50 text-white"
+              required
+            >
+              <option className="text-black" value="">
+                Select employee
+              </option>{" "}
+              {/* optional placeholder */}
+              {employees.map((emp) => (
+                <option className="text-black" key={emp._id} value={emp._id}>
+                  {emp.email}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>

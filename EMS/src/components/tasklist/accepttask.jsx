@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { updateTaskStatus } from '../../api'; // Make sure your API supports status update
+import { updateTaskStatus } from '../../api'; 
 
 const Accepttask = ({ data, onStatusChange }) => {
   const [loading, setLoading] = useState(false);

@@ -3,7 +3,6 @@
 import Task from "../models/Task.js";
 import User from "../models/User.js";
 
-// 🟢 Create new task (Admin only)
 export const createTask = async (req, res) => {
   try {
     const { title, description, assignedTo, category, date, status } = req.body;
@@ -18,7 +17,7 @@ export const createTask = async (req, res) => {
     const task = await Task.create({ 
       title, 
       description, 
-      assignedTo: [assignedTo], // ✅ wrap in array since schema expects array
+      assignedTo: [assignedTo], 
       category,
       date,
       status: status || "new"
@@ -40,7 +39,7 @@ export const createTask = async (req, res) => {
   }
 };
 
-// 🟢 Get all tasks (Admin)
+// Get all tasks (Admin)
 export const getAllTasks = async (req, res) => {
   try {
     const tasks = await Task.find()
@@ -53,7 +52,7 @@ export const getAllTasks = async (req, res) => {
   }
 };
 
-// 🟢 Get tasks by employee ID (Employee) - FIXED
+//  Get tasks by employee ID (Employee) - FIXED
 export const getTasksByUser = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -81,7 +80,7 @@ export const getTasksByUser = async (req, res) => {
   }
 };
 
-// 🟢 Update task status (Employee)
+//  Update task status (Employee)
 export const updateTaskStatus = async (req, res) => {
   try {
     const { taskId } = req.params;
@@ -115,7 +114,7 @@ export const updateTaskStatus = async (req, res) => {
   }
 };
 
-// 🟢 Get all employees (for dropdown)
+//  Get all employees (for dropdown)
 export const getEmployees = async (req, res) => {
   try {
     const employees = await User.find({ role: "employee" })
@@ -128,7 +127,7 @@ export const getEmployees = async (req, res) => {
   }
 };
 
-// 🟢 Get all employees with their tasks (for admin dashboard)
+//  Get all employees with their tasks (for admin dashboard)
 export const getEmployeesWithTasks = async (req, res) => {
   try {
     const employees = await User.find({ role: "employee" })

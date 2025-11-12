@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema({
   description: { type: String },
   category: { type: String },
   date: { type: Date },
-  assignedTo: [{ // ✅ array of employee ObjectIds
+  assignedTo: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true

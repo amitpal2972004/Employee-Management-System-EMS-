@@ -24,7 +24,6 @@ const App = () => {
     fetchTasks().then((data) => console.log("Tasks from backend:", data));
   }, []);
 
-  // ✅ Handle login
 const handleLogin = async (email, password) => {
   try {
     const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -39,7 +38,6 @@ const handleLogin = async (email, password) => {
       setUser(data.user.role);
       setloggedInUserData(data.user);
 
-      // ✅ store token for future API calls
       localStorage.setItem("token", data.token);
     } else {
       alert(data.message || "Login failed");
@@ -52,7 +50,6 @@ const handleLogin = async (email, password) => {
 
 
 
-  // ✅ What the user sees
   return (
     <>
       {!user ? (

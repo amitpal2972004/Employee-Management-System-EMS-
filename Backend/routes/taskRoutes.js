@@ -4,13 +4,13 @@ import {
   getAllTasks,
   getTasksByUser,
   updateTaskStatus,
-  getEmployees,            // ✅ added
-  getEmployeesWithTasks    // ✅ added (optional)
+  getEmployees,            
+  getEmployeesWithTasks    
 } from "../controllers/taskController.js";
 
 const router = express.Router();
 
-// ✅ Place static routes BEFORE dynamic ones
+
 router.get("/employees", getEmployees);
 router.get("/employees-with-tasks", getEmployeesWithTasks);
 
