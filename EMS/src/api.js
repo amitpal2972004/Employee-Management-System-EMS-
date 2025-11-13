@@ -1,5 +1,6 @@
 //api.js
-const API_URL = "https://employee-management-system-ems-backend.onrender.com/api";
+// const API_URL = "https://employee-management-system-ems-backend.onrender.com/api";
+const API_URL = `${import.meta.env.VITE_API_URL}/api`;
 
 export const fetchTasks = async () => {
   const response = await fetch(`${API_URL}/tasks`);
