@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getEmployeesWithTasks } from "../../api";
 
-const Alltask = ({ refreshFlag }) => {
+const Alltask = ({  refreshFlag }) => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ const Alltask = ({ refreshFlag }) => {
       </div>
 
       {/* Employee List */}
-      <div className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-emerald-600 scrollbar-track-gray-800 mt-3">
+      <div id="alltasknoscroll" className="max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-emerald-600 scrollbar-track-gray-800 mt-3">
         {employees.length > 0 ? (
           employees.map((emp, idx) => {
             const counts = emp.tasks?.reduce(
