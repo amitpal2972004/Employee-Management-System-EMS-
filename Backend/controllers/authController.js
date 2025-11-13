@@ -1,7 +1,6 @@
 import User from "../models/User.js";
-import bcrypt from "bcryptjs";
 
-// Register a new user (admin or employee)
+// Register a new user (plain password)
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -11,10 +10,8 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash password before saving
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ name, email, password: hashedPassword, role });
+    // Save password directly (no hashing)
+    const newUser = new User({ name, email, password, role });
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
@@ -24,21 +21,19 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// Login user
-
+// Login user (no bcrypt)
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user by email only
+    // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Compare password using bcrypt
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    // Compare plain-text passwords directly
+    if (user.password !== password) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
