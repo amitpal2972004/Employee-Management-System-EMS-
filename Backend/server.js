@@ -9,15 +9,26 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// ✅ CORS configuration
+const corsOptions = {
+  origin: "https://employee-management-system-ems-09qm.onrender.com", // your FRONTEND Render URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions)); // use before routes
 app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+
+// Default route
 app.get("/", (req, res) => {
   res.send("Employee Management System Backend is Running 🚀");
 });
 
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(` Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
