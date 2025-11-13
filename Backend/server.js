@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -23,6 +24,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Default route
 app.get("/", (req, res) => {
