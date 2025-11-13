@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createTask } from "../../api";
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
 const Createtask = ({ onTaskCreated, refreshEmployees }) => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -14,7 +15,7 @@ const Createtask = ({ onTaskCreated, refreshEmployees }) => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const res = await fetch(`/api/tasks/employees`);
+        const res = await fetch(`${BACKEND_URL}/api/tasks/employees`);
         if (!res.ok) throw new Error("Failed to fetch employees");
         const data = await res.json();
         setEmployees(data);
